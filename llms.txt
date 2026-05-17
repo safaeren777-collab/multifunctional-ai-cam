@@ -1,0 +1,47 @@
+# Multifunctional AI Cam — Smart OS
+
+> An AI-powered smart camera operating system built on a Seeed XIAO ESP32-S3 Sense microcontroller with a cloud FastAPI backend. Integrates Google Gemini 2.5 for vision and audio, OpenCV for motion detection, and Telegram for real-time alerts and media delivery.
+
+## What this project does
+
+This project turns a small ESP32-S3 microcontroller into a multi-mode AI camera device. It has no physical buttons — all input is via PDM microphone tap detection. A companion VPS backend handles heavy AI and video processing.
+
+## Key features
+
+- Guard mode: real-time motion detection using OpenCV frame differencing, captures 40 frames and stitches H.264 MP4 video, sends to Telegram within seconds
+- AI Assist mode: captures UXGA photo, sends to Google Gemini 2.5 Flash for a one-sentence description (≤90 chars), renders result on OLED and forwards to Telegram
+- Classic mode: tap-triggered photo capture with optional countdown, direct Telegram delivery
+- Voice mode: 2-second WAV recording via PDM mic, Gemini Audio classifies into one of 8 commands (guard, ai, photo, settings, sleep, back, next, unknown)
+- Timelapse mode: UXGA frame every 2 minutes, PSRAM-buffered, FFmpeg-stitched MP4 sent to Telegram
+- IT Support mode: acts as USB HID keyboard on a paired Windows PC, Gemini 2.5 Pro runs remote diagnostic loops via PowerShell
+
+## Hardware
+
+- Seeed XIAO ESP32-S3 Sense (dual-core 240MHz, 8MB Flash, 8MB PSRAM)
+- OV2640 camera module (up to UXGA 1600×1200)
+- 0.91" SSD1306 OLED display (128×32, I2C)
+- PDM microphone (built-in, used for tap detection and voice commands)
+- 250mAh LiPo battery (portable/wearable)
+- USB-OTG / TinyUSB HID keyboard emulation
+
+## Tech stack
+
+- Firmware: C++ / Arduino (ESP-IDF)
+- Backend: Python 3.10+ / FastAPI / uvicorn
+- AI: Google Gemini 2.5 Flash (vision + audio), Gemini 2.5 Pro (IT diagnostics)
+- Vision: OpenCV (motion detection, frame processing)
+- Video: FFmpeg (H.264 MP4 encoding)
+- Messaging: Telegram Bot API
+- Display: U8g2 library (SSD1306 OLED)
+
+## Portfolio page
+
+Full demo with videos and photos: https://safaeren777-collab.github.io/kameran8n/
+
+## Source code
+
+GitHub: https://github.com/safaeren777-collab/kameran8n
+
+## Author
+
+Safa Eren — hardware and software developer building AI-integrated embedded systems.
