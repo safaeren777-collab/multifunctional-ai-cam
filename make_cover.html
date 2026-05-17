@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cover Generator</title>
+<style>
+  body { background:#0d1117; display:flex; flex-direction:column; align-items:center; padding:30px; font-family:sans-serif; color:#e6edf3; }
+  canvas { border:1px solid #30363d; border-radius:8px; max-width:100%; }
+  button { margin-top:20px; padding:14px 40px; background:#58a6ff; color:#0d1117; border:none; border-radius:8px; font-size:16px; font-weight:700; cursor:pointer; }
+  button:hover { background:#79b8ff; }
+</style>
+</head>
+<body>
+<h2 style="margin-bottom:20px">📸 Cover Image Generator — 900×450px</h2>
+<canvas id="c" width="900" height="675"></canvas>
+<button onclick="download()">⬇ PNG olarak indir</button>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const W = 900, H = 675;
+
+function loadImg(src) {
+  return new Promise(res => {
+    const i = new Image();
+    i.onload = () => res(i);
+    i.onerror = () => res(null);
+    i.src = src;
+  });
+}
+
+async function draw() {
+  // --- ARKA PLAN GRADİENT ---
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#0d1117');
+  bg.addColorStop(0.5, '#161b22');
+  bg.addColorStop(1, '#0d1117');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // --- MAVI GLOW SOL ---
+  const glow = ctx.createRadialGradient(0, H/2, 0, 0, H/2, 350);
+  glow.addColorStop(0, 'rgba(88,166,255,0.13)');
+  glow.addColorStop(1, 'rgba(88,166,255,0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, W, H);
+
+  // --- FOTOĞRAFLARI YükLE ---
+  const [pcb, timelapse, guard, ai, device, telegram] = await Promise.all([
+    loadImg('media/hardware_pcb.jpg'),
+    loadImg('media/timelapse_frame.jpg'),
+    loadImg('media/guard_alert.jpg'),
+    loadImg('media/ai_result_oled.jpg'),
+    loadImg('dddff.jpeg'),
+    loadImg('media/ai_telegram.jpg'),
+  ]);
+
+  // --- SAĞ TARAF FOTO KOLAj ---
+  const photoX = 460;
+  const photos = [device, guard, ai, pcb].filter(Boolean);
+
+  if (photos.length > 0) {
+    // Ana foto (cihaz ön yüz) - büyük üstte
+    const mainH = 300, mainW = 420;
+    if (photos[0]) drawRounded(ctx, photos[0], photoX, 20, mainW, mainH, 10);
+
+    // Orta sıra: Telegram foto + Devre şeması
+    const midW = 203, midH = 170;
+    // Sol: VPS-Cihaz-AI sistem şeması
+    drawSystemArch(ctx, photoX, 330, midW, midH);
+    // Sağ: Devre şeması
+    drawSchematic(ctx, photoX + 213, 330, midW, midH);
+
+    // Alt sıra: PCB - 90 derece sola döndürülmüş
+    const botW = 420, botH = 140;
+    if (photos[3]) drawRoundedRotated(ctx, photos[3], photoX, 510, botW, botH, 8, -Math.PI/2);
+  }
+
+  // --- OVERLAY (fotoların sol kenarı soluklaşsın) ---
+  const fade = ctx.createLinearGradient(photoX - 80, 0, photoX + 10, 0);
+  fade.addColorStop(0, 'rgba(13,17,23,1)');
+  fade.addColorStop(1, 'rgba(13,17,23,0)');
+  ctx.fillStyle = fade;
+  ctx.fillRect(0, 0, photoX + 10, H);
+
+  // --- v3.32 KÜÇÜK ETİKET ---
+  ctx.fillStyle = 'rgba(88,166,255,0.15)';
+  ctx.strokeStyle = 'rgba(88,166,255,0.35)';
+  ctx.lineWidth = 1;
+  roundRect(ctx, 20, 28, 52, 22, 11);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#58a6ff';
+  ctx.font = '700 10px monospace';
+  ctx.fillText('v3.32', 30, 43);
+
+  // --- BAŞLIK (fotoğrafın solunda kalacak şekilde) ---
+  ctx.fillStyle = '#e6edf3';
+  ctx.font = '800 48px sans-serif';
+  // "Kameran8n" başlık
+  ctx.fillText('Kameran8n', 20, 140);
+  ctx.fillStyle = '#58a6ff';
+  ctx.font = '800 32px sans-serif';
+  ctx.fillText('Smart OS', 20, 190);
+
+  // --- ALT BAŞLIK ---
+  ctx.fillStyle = '#8b949e';
+  ctx.font = '400 14px sans-serif';
+  ctx.fillText('ESP32-S3 Smart OS  ·  Google Gemini 2.5', 20, 235);
+
+  // --- HARDWARE BADGE ---
+  ctx.fillStyle = 'rgba(63,185,80,0.12)';
+  ctx.strokeStyle = 'rgba(63,185,80,0.3)';
+  roundRect(ctx, 20, 255, 200, 24, 6);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#3fb950';
+  ctx.font = '600 11px sans-serif';
+  ctx.fillText('250mAh LiPo  ·  PLA 3D Printed', 30, 271);
+
+  // --- ÖZELLİK ETİKETLERİ ---
+  const tags = ['🛡 Guard', '🤖 AI Vision', '🎙 Voice', '⏱ Timelapse', '🖥 IT Support'];
+  let tx = 20, ty = 370;
+  ctx.font = '600 12px sans-serif';
+  tags.forEach(tag => {
+    const tw = ctx.measureText(tag).width + 20;
+    ctx.fillStyle = 'rgba(33,38,45,0.9)';
+    ctx.strokeStyle = '#30363d';
+    ctx.lineWidth = 1;
+    roundRect(ctx, tx, ty, tw, 26, 6);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#e6edf3';
+    ctx.fillText(tag, tx + 10, ty + 17);
+    tx += tw + 8;
+    if (tx > 440) { tx = 20; ty += 34; }
+  });
+
+  // --- TECH STACK DOTS ---
+  const techs = ['C++', 'Python', 'Gemini', 'OpenCV', 'Telegram', 'FastAPI'];
+  let dotX = 20;
+  const dotColors = ['#58a6ff','#3fb950','#d2a8ff','#e3b341','#f78166','#3fb950'];
+  ctx.font = '500 12px sans-serif';
+  techs.forEach((t, i) => {
+    ctx.fillStyle = dotColors[i];
+    ctx.beginPath(); ctx.arc(dotX, 590, 5, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#8b949e';
+    ctx.fillText(t, dotX + 10, 595);
+    dotX += ctx.measureText(t).width + 26;
+  });
+
+  // --- ALT BİLGİ ---
+  ctx.fillStyle = '#58a6ff';
+  ctx.font = '500 12px monospace';
+  ctx.fillText('github.com/safaeren777-collab/kameran8n', 20, 645);
+}
+
+function drawSystemArch(ctx, x, y, w, h) {
+  ctx.save();
+  roundRect(ctx, x, y, w, h, 8);
+  ctx.fillStyle = '#0d1117';
+  ctx.fill();
+  ctx.strokeStyle = '#30363d';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  const pad = 10;
+  const bw = 54, bh = 22;
+
+  // 3 node konumları: ESP32 sol, VPS orta, Gemini sağ üst, Telegram sağ alt
+  const nodes = {
+    esp:  { x: x + pad + bw/2,         y: y + h/2,           label: 'ESP32-S3', sub: 'Device', color: '#58a6ff' },
+    vps:  { x: x + w/2,                y: y + h/2,           label: 'VPS',      sub: 'FastAPI', color: '#3fb950' },
+    ai:   { x: x + w - pad - bw/2,     y: y + pad + bh/2,    label: 'Gemini',   sub: '2.5 AI',  color: '#d2a8ff' },
+    tg:   { x: x + w - pad - bw/2,     y: y + h - pad - bh/2,label: 'Telegram', sub: 'Bot',     color: '#f78166' },
+  };
+
+  // Bağlantı çizgileri
+  const connections = [
+    { from: 'esp', to: 'vps', label: 'HTTP', color: '#58a6ff' },
+    { from: 'vps', to: 'ai',  label: 'API',  color: '#d2a8ff' },
+    { from: 'vps', to: 'tg',  label: 'Bot',  color: '#f78166' },
+  ];
+
+  connections.forEach(c => {
+    const a = nodes[c.from], b = nodes[c.to];
+    // Ok çizgisi
+    ctx.beginPath();
+    ctx.strokeStyle = c.color + '66';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 2]);
+    ctx.moveTo(a.x + bw/2, a.y);
+    ctx.lineTo(b.x - bw/2, b.y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Ok ucu
+    const angle = Math.atan2(b.y - a.y, (b.x - bw/2) - (a.x + bw/2));
+    const ex = b.x - bw/2, ey = b.y;
+    ctx.beginPath();
+    ctx.fillStyle = c.color + '99';
+    ctx.moveTo(ex, ey);
+    ctx.lineTo(ex - 5*Math.cos(angle-0.4), ey - 5*Math.sin(angle-0.4));
+    ctx.lineTo(ex - 5*Math.cos(angle+0.4), ey - 5*Math.sin(angle+0.4));
+    ctx.closePath();
+    ctx.fill();
+
+    // Etiket
+    const lx = (a.x + bw/2 + b.x - bw/2) / 2;
+    const ly = (a.y + b.y) / 2 - 4;
+    ctx.fillStyle = c.color;
+    ctx.font = 'bold 6px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(c.label, lx, ly);
+  });
+
+  // Node kutular
+  Object.values(nodes).forEach(n => {
+    ctx.fillStyle = '#161b22';
+    ctx.strokeStyle = n.color;
+    ctx.lineWidth = 1.5;
+    roundRect(ctx, n.x - bw/2, n.y - bh/2, bw, bh, 4);
+    ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = n.color;
+    ctx.font = 'bold 7.5px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(n.label, n.x, n.y - 2);
+    ctx.fillStyle = '#8b949e';
+    ctx.font = '6px sans-serif';
+    ctx.fillText(n.sub, n.x, n.y + 8);
+  });
+
+  ctx.textAlign = 'left';
+  ctx.restore();
+}
+
+function drawSchematic(ctx, x, y, w, h) {
+  // Arka plan
+  ctx.save();
+  roundRect(ctx, x, y, w, h, 8);
+  ctx.fillStyle = '#0d1117';
+  ctx.fill();
+  ctx.strokeStyle = '#30363d';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  const cx = x + w/2, cy = y + h/2;
+
+  // --- ESP32-S3 merkez kutu ---
+  const bw = 64, bh = 38;
+  const bx = cx - bw/2, by = cy - bh/2;
+  ctx.fillStyle = '#1c2128';
+  ctx.strokeStyle = '#58a6ff';
+  ctx.lineWidth = 1.5;
+  roundRect(ctx, bx, by, bw, bh, 5);
+  ctx.fill(); ctx.stroke();
+  ctx.fillStyle = '#58a6ff';
+  ctx.font = 'bold 7px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('ESP32-S3', cx, cy - 5);
+  ctx.fillStyle = '#8b949e';
+  ctx.font = '6px monospace';
+  ctx.fillText('XIAO Sense', cx, cy + 6);
+
+  // --- Bağlantı çizgileri ve modüller ---
+  const lineColor = '#30363d';
+  const modules = [
+    { label: 'OV2640', sub: 'Camera', dx: -w*0.38, dy: -h*0.28, color: '#3fb950', port: 'CAM' },
+    { label: 'SSD1306', sub: 'OLED 0.91"', dx: w*0.38, dy: -h*0.28, color: '#58a6ff', port: 'I2C' },
+    { label: 'LiPo', sub: '250 mAh', dx: -w*0.38, dy: h*0.28, color: '#e3b341', port: 'PWR' },
+    { label: 'PDM Mic', sub: 'Tap+Voice', dx: w*0.38, dy: h*0.28, color: '#d2a8ff', port: 'I2S' },
+  ];
+
+  modules.forEach(m => {
+    const mx = cx + m.dx, my = cy + m.dy;
+    const mw = 52, mh = 28;
+
+    // Bağlantı noktası ESP32'den
+    let startX = bx + (m.dx < 0 ? 0 : bw);
+    let startY = by + (m.dy < 0 ? 0 : bh);
+
+    // Çizgi
+    ctx.beginPath();
+    ctx.strokeStyle = m.color + '55';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(mx, my);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Port etiketi çizgi üstüne
+    const midLx = (startX + mx) / 2, midLy = (startY + my) / 2;
+    ctx.fillStyle = m.color + 'cc';
+    ctx.font = 'bold 5.5px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(m.port, midLx, midLy - 2);
+
+    // Modül kutusu
+    ctx.fillStyle = '#161b22';
+    ctx.strokeStyle = m.color;
+    ctx.lineWidth = 1.2;
+    roundRect(ctx, mx - mw/2, my - mh/2, mw, mh, 4);
+    ctx.fill(); ctx.stroke();
+
+    // Modül ismi
+    ctx.fillStyle = m.color;
+    ctx.font = 'bold 7px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(m.label, mx, my - 3);
+    ctx.fillStyle = '#8b949e';
+    ctx.font = '6px sans-serif';
+    ctx.fillText(m.sub, mx, my + 7);
+  });
+
+  ctx.textAlign = 'left';
+  ctx.restore();
+}
+
+function drawRoundedRotated(ctx, img, x, y, w, h, r, angle) {
+  ctx.save();
+  roundRect(ctx, x, y, w, h, r);
+  ctx.clip();
+  ctx.translate(x + w/2, y + h/2);
+  ctx.rotate(angle);
+  const scale = Math.max(h/img.width, w/img.height);
+  const sw = img.width * scale, sh = img.height * scale;
+  ctx.drawImage(img, -sw/2, -sh/2, sw, sh);
+  ctx.restore();
+}
+
+function drawRounded(ctx, img, x, y, w, h, r) {
+  ctx.save();
+  roundRect(ctx, x, y, w, h, r);
+  ctx.clip();
+  // cover fit
+  const scale = Math.max(w/img.width, h/img.height);
+  const sw = img.width * scale, sh = img.height * scale;
+  ctx.drawImage(img, x-(sw-w)/2, y-(sh-h)/2, sw, sh);
+  ctx.restore();
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y); ctx.arcTo(x+w, y, x+w, y+r, r);
+  ctx.lineTo(x+w, y+h-r); ctx.arcTo(x+w, y+h, x+w-r, y+h, r);
+  ctx.lineTo(x+r, y+h); ctx.arcTo(x, y+h, x, y+h-r, r);
+  ctx.lineTo(x, y+r); ctx.arcTo(x, y, x+r, y, r);
+  ctx.closePath();
+}
+
+function download() {
+  const a = document.createElement('a');
+  a.download = 'multifunctional-ai-cam-cover.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+
+draw();
+</script>
+</body>
+</html>

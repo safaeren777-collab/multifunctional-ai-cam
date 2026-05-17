@@ -1,4 +1,4 @@
-# Multifunctional AI Cam — Smart OS
+# Kameran8n — Smart OS
 
 > An AI-powered smart camera operating system built on a Seeed XIAO ESP32-S3 Sense microcontroller with a cloud FastAPI backend. Integrates Google Gemini 2.5 for vision and audio, OpenCV for motion detection, and Telegram for real-time alerts and media delivery.
 
