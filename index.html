@@ -672,6 +672,55 @@
   </div>
 </section>
 
+<!-- ═══════════════ CAD & 3D PRINT ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Hardware Design</div>
+    <h2>CAD &amp; 3D Printing</h2>
+    <p>The enclosure was designed in CAD and printed in PLA at 60°C bed temperature. STEP files are available for anyone who wants to replicate or modify the hardware.</p>
+
+    <!-- Assembly photo -->
+    <div style="margin-bottom:20px">
+      <img src="media/cad_render.png" class="hw-photo" alt="CAD assembly view" style="max-height:480px;cursor:zoom-in" onclick="openLightbox(this)" />
+      <p class="video-caption">Assembly view — CAD model</p>
+    </div>
+
+    <!-- Print specs -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:28px">
+      <div class="hw-card">
+        <div class="label">Material</div>
+        <div class="value">PLA</div>
+      </div>
+      <div class="hw-card">
+        <div class="label">Bed Temperature</div>
+        <div class="value">60°C</div>
+      </div>
+      <div class="hw-card">
+        <div class="label">Format</div>
+        <div class="value">STEP / STP</div>
+      </div>
+      <div class="hw-card">
+        <div class="label">Components</div>
+        <div class="value">ESP32-S3 + OLED</div>
+      </div>
+    </div>
+
+    <!-- Download links -->
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="Seeed Studio XIAO-ESP32-S3-Sense.step" download
+         style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-size:13px;font-weight:600;transition:border-color .2s"
+         onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+        ⬇ Seeed XIAO ESP32-S3-Sense.step
+      </a>
+      <a href="OLED_0.91_128x32.stp" download
+         style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-size:13px;font-weight:600;transition:border-color .2s"
+         onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+        ⬇ OLED 0.91" 128×32.stp
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════ TECH STACK ═══════════════ -->
 <section>
   <div class="container">
