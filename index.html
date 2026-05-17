@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kameran8n — Smart OS · Safa Eren</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #21262d;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --accent3: #f78166;
+      --accent4: #d2a8ff;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --orange: #e3b341;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      border-bottom: 1px solid var(--border);
+      padding: 70px 24px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #0d1117 0%, #161b22 60%, #0d1117 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(88,166,255,.12), transparent);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(88,166,255,.1);
+      border: 1px solid rgba(88,166,255,.3);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .badge .dot { width: 6px; height: 6px; border-radius: 50%; }
+    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .15s, transform .15s;
+    }
+    .btn:hover { opacity: .85; transform: translateY(-1px); }
+    .btn-primary { background: var(--accent); color: #0d1117; }
+    .btn-secondary { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+
+    /* Hero video */
+    .hero-video-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      box-shadow: 0 -8px 40px rgba(88,166,255,.08);
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      display: block;
+      max-height: 420px;
+      object-fit: cover;
+      background: #000;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 28px; }
+    h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    p { color: var(--muted); margin-bottom: 14px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── HARDWARE ── */
+    .hw-photo {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 28px;
+      object-fit: cover;
+      max-height: 400px;
+      display: block;
+    }
+    .hw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+    }
+    .hw-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .hw-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 5px; }
+    .hw-card .value { font-size: 13px; font-weight: 600; color: var(--text); }
+
+    /* ── UI VIDEO ── */
+    .video-full {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: block;
+      background: #000;
+    }
+    .video-caption {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ── TAP SYSTEM ── */
+    .tap-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .tap-card {
+      flex: 1; min-width: 130px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .tap-num { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+    .tap-label { font-size: 12px; color: var(--muted); }
+
+    /* ── MODES ── */
+    .mode-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      transition: border-color .2s;
+    }
+    .mode-block:hover { border-color: var(--accent); }
+    .mode-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 22px 24px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mode-icon-big { font-size: 28px; }
+    .mode-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: .8px; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 4px;
+      margin-bottom: 4px;
+    }
+    .tag-guard  { background: rgba(247,129,102,.15); color: var(--accent3); }
+    .tag-ai     { background: rgba(88,166,255,.15);  color: var(--accent); }
+    .tag-classic{ background: rgba(63,185,80,.15);   color: var(--accent2); }
+    .tag-voice  { background: rgba(210,168,255,.15); color: var(--accent4); }
+    .tag-tl     { background: rgba(227,179,65,.15);  color: var(--orange); }
+    .tag-it     { background: rgba(139,148,158,.15); color: var(--muted); }
+    .mode-title { font-size: 1.1rem; font-weight: 700; }
+    .mode-desc  { font-size: 13px; color: var(--muted); margin: 0; }
+
+    .mode-media { padding: 20px 24px 24px; }
+    .media-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .media-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    @media (max-width: 600px) {
+      .media-grid-2, .media-grid-3 { grid-template-columns: 1fr; }
+    }
+    .media-item { position: relative; }
+    .media-item img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 16/10;
+      cursor: zoom-in;
+      transition: transform .2s, border-color .2s;
+    }
+    .media-item img:hover { transform: scale(1.02); border-color: var(--accent); }
+    .media-item video {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: block;
+      background: #000;
+    }
+    .media-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      text-align: center;
+    }
+    .stripe-guard  { border-top: 3px solid var(--accent3); }
+    .stripe-ai     { border-top: 3px solid var(--accent); }
+    .stripe-classic{ border-top: 3px solid var(--accent2); }
+    .stripe-voice  { border-top: 3px solid var(--accent4); }
+    .stripe-tl     { border-top: 3px solid var(--orange); }
+    .stripe-it     { border-top: 3px solid var(--muted); }
+
+    /* ── ARCH ── */
+    .arch-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 13px;
+      color: var(--muted);
+      overflow-x: auto;
+      line-height: 1.7;
+    }
+    .arch-block .hl  { color: var(--accent); }
+    .arch-block .hl2 { color: var(--accent2); }
+    .arch-block .hl3 { color: var(--orange); }
+
+    /* ── ENDPOINTS ── */
+    .endpoint-list {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .endpoint {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .endpoint:last-child { border-bottom: none; }
+    .method { font-family: monospace; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-align: center; }
+    .post { background: rgba(63,185,80,.15); color: var(--accent2); }
+    .get  { background: rgba(88,166,255,.15); color: var(--accent); }
+    .ep-path { font-family: monospace; font-size: 13px; color: var(--text); margin-bottom: 2px; }
+    .ep-desc { font-size: 12px; color: var(--muted); }
+
+    /* ── TECH STACK ── */
+    .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .stack-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .stack-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+    .stack-card .name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .stack-card .role { font-size: 12px; color: var(--muted); }
+
+    /* ── LIMITATIONS ── */
+    .limit-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+    .limit-card h3 { color: var(--orange); font-size: 13px; margin-bottom: 5px; }
+    .limit-card p  { font-size: 13px; margin: 0; }
+
+    /* ── ROADMAP ── */
+    .road-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .road-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .road-card .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
+    .road-card .val   { font-size: 13px; color: var(--text); }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.9);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 8px; }
+    #lightbox-close {
+      position: fixed;
+      top: 20px; right: 24px;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    footer p { color: var(--muted); font-size: 14px; margin: 0; }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    code {
+      background: var(--surface2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--accent);
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ LIGHTBOX ═══════════════ -->
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-badge">🔬 Portfolio Project · v3.32 Final</div>
+  <h1>Kameran8n<br><span>Smart OS</span></h1>
+  <p class="subtitle">
+    An AI-powered smart camera operating system on a Seeed XIAO ESP32-S3 Sense,
+    with a cloud FastAPI backend integrating Google Gemini and Telegram.
+  </p>
+  <div class="badge-row">
+    <span class="badge"><span class="dot" style="background:#58a6ff"></span>C++ / Arduino</span>
+    <span class="badge"><span class="dot" style="background:#3fb950"></span>Python / FastAPI</span>
+    <span class="badge"><span class="dot" style="background:#d2a8ff"></span>Google Gemini 2.5</span>
+    <span class="badge"><span class="dot" style="background:#e3b341"></span>OpenCV</span>
+    <span class="badge"><span class="dot" style="background:#f78166"></span>Telegram Bot</span>
+    <span class="badge"><span class="dot" style="background:#8b949e"></span>USB HID</span>
+  </div>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="https://github.com/safaeren777-collab" target="_blank">⭐ View on GitHub</a>
+    <a class="btn btn-secondary" href="#modes">↓ Explore Modes</a>
+  </div>
+  <!-- Opening video -->
+  <div class="hero-video-wrap">
+    <video src="media/hero_opening.mp4" autoplay muted loop playsinline></video>
+  </div>
+</section>
+
+<!-- ═══════════════ HARDWARE ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Hardware</div>
+    <h2>Components</h2>
+    <img src="media/hardware_pcb.jpg" class="hw-photo" alt="PCB and modules bare view" />
+    <div class="hw-grid">
+      <div class="hw-card"><div class="label">Main MCU</div><div class="value">Seeed XIAO ESP32-S3 Sense</div></div>
+      <div class="hw-card"><div class="label">Processor</div><div class="value">Dual-core 240 MHz</div></div>
+      <div class="hw-card"><div class="label">Memory</div><div class="value">8MB Flash · 8MB PSRAM</div></div>
+      <div class="hw-card"><div class="label">Camera</div><div class="value">OV2640 — up to UXGA</div></div>
+      <div class="hw-card"><div class="label">Display</div><div class="value">0.91" SSD1306 OLED 128×32</div></div>
+      <div class="hw-card"><div class="label">Input</div><div class="value">PDM Mic (tap detection)</div></div>
+      <div class="hw-card"><div class="label">USB</div><div class="value">USB-OTG / TinyUSB HID</div></div>
+      <div class="hw-card"><div class="label">Power</div><div class="value">Li-Po Battery (portable)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ UI TRANSITIONS ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Interface</div>
+    <h2>Menu &amp; UI Transitions</h2>
+    <p>Six modes navigated entirely via PDM microphone tap detection — no physical buttons. The 0.91" OLED displays menus, status, and AI results.</p>
+    <video src="media/ui_transitions.mp4" class="video-full" controls muted playsinline></video>
+    <p class="video-caption">Boot sequence → menu navigation → mode switching</p>
+    <div class="tap-row">
+      <div class="tap-card"><div class="tap-num">1×</div><div class="tap-label">Scroll / Action</div></div>
+      <div class="tap-card"><div class="tap-num">2×</div><div class="tap-label">Confirm / Enter</div></div>
+      <div class="tap-card"><div class="tap-num">3×</div><div class="tap-label">Unlock / Exit</div></div>
+      <div class="tap-card"><div class="tap-num">40s</div><div class="tap-label">Auto-lock idle</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MODES ═══════════════ -->
+<section id="modes">
+  <div class="container">
+    <div class="section-label">Features</div>
+    <h2>Six Operational Modes</h2>
+
+    <!-- GUARD -->
+    <div class="mode-block stripe-guard">
+      <div class="mode-header">
+        <span class="mode-icon-big">🛡️</span>
+        <div>
+          <div class="mode-tag tag-guard">Guard</div>
+          <div class="mode-title">Motion Detection</div>
+          <p class="mode-desc">Streams QQVGA frames, detects inter-frame deltas with OpenCV, buffers 40 frames on trigger, stitches H.264 MP4 and pushes to Telegram in seconds.</p>
+        </div>
+      </div>
+      <div class="mode-media">
+        <div class="media-grid-2">
+          <div class="media-item">
+            <video src="media/guard_demo.mp4" controls muted playsinline></video>
+            <div class="media-label">Motion detected → recording</div>
+          </div>
+          <div class="media-grid-2" style="gap:8px">
+            <div class="media-item">
+              <img src="media/guard_alert.jpg" alt="Alert sent photo" onclick="openLightbox(this)" />
+              <div class="media-label">Alert snapshot</div>
+            </div>
+            <div class="media-item">
+              <img src="media/guard_telegram.jpg" alt="Telegram notification" onclick="openLightbox(this)" />
+              <div class="media-label">Telegram delivery</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI ASSIST -->
+    <div class="mode-block stripe-ai">
+      <div class="mode-header">
+        <span class="mode-icon-big">🤖</span>
+        <div>
+          <div class="mode-tag tag-ai">AI Assist</div>
+          <div class="mode-title">Vision Q&amp;A</div>
+          <p class="mode-desc">Captures UXGA photo (OLED flash in dark), sends to Gemini 2.5 Flash for a ≤90-char description, renders on OLED and forwards to Telegram.</p>
+        </div>
+      </div>
+      <div class="mode-media">
+        <div class="media-grid-3">
+          <div class="media-item">
+            <img src="media/ai_capture.jpg" alt="What the camera sees" onclick="openLightbox(this)" />
+            <div class="media-label">What the camera sees</div>
+          </div>
+          <div class="media-item">
+            <img src="media/ai_result_oled.jpg" alt="AI result on OLED" onclick="openLightbox(this)" />
+            <div class="media-label">Gemini result → OLED</div>
+          </div>
+          <div class="media-item">
+            <img src="media/ai_telegram.jpg" alt="Telegram output" onclick="openLightbox(this)" />
+            <div class="media-label">Sent to Telegram</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLASSIC -->
+    <div class="mode-block stripe-classic">
+      <div class="mode-header">
+        <span class="mode-icon-big">📸</span>
+        <div>
+          <div class="mode-tag tag-classic">Classic</div>
+          <div class="mode-title">Camera Shutter</div>
+          <p class="mode-desc">Tap-triggered photo capture with optional 3-second countdown. Image sent directly to Telegram. Timer toggle in Settings.</p>
+        </div>
+      </div>
+      <div class="mode-media">
+        <div class="media-grid-2">
+          <div class="media-item">
+            <img src="media/classic_device.jpg" alt="Classic mode on device" onclick="openLightbox(this)" />
+            <div class="media-label">Device in Classic mode</div>
+          </div>
+          <div class="media-item" style="display:flex;align-items:center;justify-content:center;background:var(--surface2);border-radius:8px;border:1px solid var(--border);min-height:160px;">
+            <span style="color:var(--muted);font-size:13px;text-align:center;padding:20px">Result photo sent<br>directly to Telegram</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VOICE -->
+    <div class="mode-block stripe-voice">
+      <div class="mode-header">
+        <span class="mode-icon-big">🎙️</span>
+        <div>
+          <div class="mode-tag tag-voice">Voice</div>
+          <div class="mode-title">Spoken Commands</div>
+          <p class="mode-desc">Records 2s WAV via PDM mic, Gemini Audio classifies into one of 8 commands (guard, ai, photo, settings…) and executes it instantly.</p>
+        </div>
+      </div>
+      <div class="mode-media">
+        <div class="media-grid-2">
+          <div class="media-item">
+            <video src="media/voice_demo.mp4" controls muted playsinline></video>
+            <div class="media-label">Voice command demo</div>
+          </div>
+          <div class="media-item">
+            <img src="media/voice_oled.jpg" alt="Voice mode OLED" onclick="openLightbox(this)" />
+            <div class="media-label">OLED during recording</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELAPSE -->
+    <div class="mode-block stripe-tl">
+      <div class="mode-header">
+        <span class="mode-icon-big">⏱️</span>
+        <div>
+          <div class="mode-tag tag-tl">Timelapse</div>
+          <div class="mode-title">Long-Run Capture</div>
+          <p class="mode-desc">UXGA frame every 2 minutes, buffered in PSRAM (20-frame batches), FFmpeg stitches at 6 fps into H.264 MP4 sent to Telegram. WiFi sleeps between captures.</p>
+        </div>
+      </div>
+      <div class="mode-media">
+        <div class="media-grid-2">
+          <div class="media-item">
+            <video src="media/timelapse_demo.mp4" controls muted playsinline></video>
+            <div class="media-label">Timelapse output video</div>
+          </div>
+          <div class="media-item">
+            <img src="media/timelapse_frame.jpg" alt="Timelapse frame" onclick="openLightbox(this)" />
+            <div class="media-label">Captured frame (UXGA)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IT SUPPORT -->
+    <div class="mode-block stripe-it">
+      <div class="mode-header">
+        <span class="mode-icon-big">🖥️</span>
+        <div>
+          <div class="mode-tag tag-it">IT Support</div>
+          <div class="mode-title">Remote PC Diagnostics</div>
+          <p class="mode-desc">Acts as USB HID keyboard on a paired Windows PC. Gemini 2.5 Pro runs a 4-turn diagnostic loop, generates PowerShell, device types it on target via Run dialog, result sent to Telegram with ✅/❌ approval.</p>
+        </div>
+      </div>
+      <div class="mode-media">
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:20px;font-family:monospace;font-size:12px;color:var(--muted);line-height:1.8">
+          <span style="color:var(--accent4)">/e bilgisayar yavaş</span> &rarr; Telegram<br>
+          Gemini 2.5 Pro &rarr; diagnostic plan<br>
+          ESP32 HID &rarr; <span style="color:var(--accent2)">types PowerShell on target PC</span><br>
+          Results POST'd &rarr; VPS &rarr; Gemini analysis<br>
+          Fix plan &rarr; Telegram <span style="color:var(--accent2)">✅</span> approve &rarr; execute
+        </div>
+        <p class="video-caption" style="margin-top:10px">Proof-of-concept — full pipeline demonstrated end-to-end</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════ ARCHITECTURE ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">System Design</div>
+    <h2>Architecture</h2>
+    <div class="arch-block">
+<span class="hl">┌─────────────────────┐</span>         <span class="hl2">┌─────────────────────┐</span>
+<span class="hl">│  ESP32-S3  (device) │</span>  WiFi   <span class="hl2">│   VPS  (FastAPI)    │</span>
+<span class="hl">│                     │</span> ◄─────► <span class="hl2">│                     │</span>
+<span class="hl">│ • OLED UI (128×32)  │</span>  HTTP   <span class="hl2">│ • Gemini 2.5 Flash  │</span>
+<span class="hl">│ • PDM mic tap det.  │</span>         <span class="hl2">│   (vision + audio)  │</span>
+<span class="hl">│ • OV2640 camera     │</span>         <span class="hl2">│ • Gemini 2.5 Pro    │</span>
+<span class="hl">│ • USB HID keyboard  │</span>         <span class="hl2">│   (IT diagnostics)  │</span>
+<span class="hl">│ • 6 app modes       │</span>         <span class="hl2">│ • Telegram bot      │</span>
+<span class="hl">└─────────────────────┘</span>         <span class="hl2">└─────────────────────┘</span>
+       │                                 ▲
+       │ <span class="hl3">USB HID</span>                         │ <span class="hl3">Telegram</span>
+       ▼                                 │
+<span class="hl3">┌─────────────────────┐</span>                  │
+<span class="hl3">│  Target PC          │</span> ─────────────────┘
+<span class="hl3">│  (IT Support only)  │</span>   HTTP POST
+<span class="hl3">└─────────────────────┘</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ BACKEND ENDPOINTS ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">VPS Backend</div>
+    <h2>FastAPI Endpoints</h2>
+    <p>All blocking calls (Gemini, Telegram, HTTP) wrapped in <code>asyncio.to_thread</code> — single uvicorn process handles concurrent polling without blocking the event loop.</p>
+    <div class="endpoint-list">
+      <div class="endpoint"><span class="method post">POST</span><div><div class="ep-path">/upload_stream</div><div class="ep-desc">Guard frames → OpenCV → H.264 → Telegram</div></div></div>
+      <div class="endpoint"><span class="method post">POST</span><div><div class="ep-path">/ask_ai</div><div class="ep-desc">Photo + Gemini 2.5 Flash → Telegram</div></div></div>
+      <div class="endpoint"><span class="method post">POST</span><div><div class="ep-path">/send_photo</div><div class="ep-desc">Direct photo to Telegram</div></div></div>
+      <div class="endpoint"><span class="method post">POST</span><div><div class="ep-path">/voice_command</div><div class="ep-desc">WAV → Gemini Audio → command name</div></div></div>
+      <div class="endpoint"><span class="method post">POST</span><div><div class="ep-path">/timelapse_batch</div><div class="ep-desc">Buffer JPEG frames on disk</div></div></div>
+      <div class="endpoint"><span class="method post">POST</span><div><div class="ep-path">/timelapse_finalize</div><div class="ep-desc">FFmpeg stitch + send MP4 to Telegram</div></div></div>
+      <div class="endpoint"><span class="method post">POST</span><div><div class="ep-path">/it_register</div><div class="ep-desc">IT Support session registration</div></div></div>
+      <div class="endpoint"><span class="method get">GET</span><div><div class="ep-path">/it_poll/{id}</div><div class="ep-desc">ESP polls every 2 s for pending commands</div></div></div>
+      <div class="endpoint"><span class="method get">GET</span><div><div class="ep-path">/it_script/{id}</div><div class="ep-desc">PC fetches dynamically-generated PowerShell</div></div></div>
+      <div class="endpoint"><span class="method post">POST</span><div><div class="ep-path">/it_data/{id}</div><div class="ep-desc">PC submits collected diagnostic data</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TECH STACK ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Technologies</div>
+    <h2>Tech Stack</h2>
+    <div class="stack-grid">
+      <div class="stack-card"><div class="stack-icon" style="background:rgba(88,166,255,.1)">⚡</div><div><div class="name">ESP32-S3 / Arduino</div><div class="role">Firmware, OLED, tap detection</div></div></div>
+      <div class="stack-card"><div class="stack-icon" style="background:rgba(63,185,80,.1)">🐍</div><div><div class="name">Python / FastAPI</div><div class="role">VPS backend, async HTTP</div></div></div>
+      <div class="stack-card"><div class="stack-icon" style="background:rgba(210,168,255,.1)">🧠</div><div><div class="name">Google Gemini 2.5</div><div class="role">Vision, audio, IT diagnostics</div></div></div>
+      <div class="stack-card"><div class="stack-icon" style="background:rgba(227,179,65,.1)">👁️</div><div><div class="name">OpenCV</div><div class="role">Motion detection, frame diff</div></div></div>
+      <div class="stack-card"><div class="stack-icon" style="background:rgba(247,129,102,.1)">📱</div><div><div class="name">Telegram Bot API</div><div class="role">Alerts, media, commands</div></div></div>
+      <div class="stack-card"><div class="stack-icon" style="background:rgba(139,148,158,.1)">🎬</div><div><div class="name">FFmpeg</div><div class="role">H.264 MP4 from JPEG frames</div></div></div>
+      <div class="stack-card"><div class="stack-icon" style="background:rgba(88,166,255,.1)">⌨️</div><div><div class="name">TinyUSB / HID</div><div class="role">USB keyboard emulation</div></div></div>
+      <div class="stack-card"><div class="stack-icon" style="background:rgba(63,185,80,.1)">🔧</div><div><div class="name">U8g2 / I2S / ESP-IDF</div><div class="role">OLED, PDM mic, camera DMA</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ LIMITATIONS ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Engineer's Diary</div>
+    <h2>Honest Limitations &amp; Lessons</h2>
+    <p>Real-world constraints hit hard — documenting them is the most useful part of a portfolio.</p>
+    <div class="limit-card">
+      <h3>⌨️ USB HID Keyboard Layout Dependency</h3>
+      <p>HID sends scancodes — Turkish Q layout turns <code>:</code>→<code>Ş</code>, <code>'</code>→<code>ı</code>. Tried four strategies (direct print, ALT+numpad, Win+Space, Notepad relay). Shipping version uses Win+Space hybrid. True fix: composite USB + FAT image, device types only the drive letter.</p>
+    </div>
+    <div class="limit-card">
+      <h3>🔄 ArduinoOTA + USB-OTG Conflict</h3>
+      <p>Wireless OTA produced <code>BEGIN HATA</code> once TinyUSB HID held heap. Removed in v3.32 — flash via boot+reset only.</p>
+    </div>
+    <div class="limit-card">
+      <h3>🛡️ Windows Defender ASR Detection</h3>
+      <p>ASR silently kills <code>iex (iwr 'http://...')</code> from Run dialog. Resolved with Base64 <code>-EncodedCommand</code>. AMSI still scans decoded payload — proper fix is code signing for managed environments.</p>
+    </div>
+    <div class="limit-card">
+      <h3>📡 Telegram Polling Race</h3>
+      <p>Two uvicorn instances on same bot token race for <code>getUpdates</code>. Deploy script kills existing instance first. Symptom: "bot ignores commands sometimes."</p>
+    </div>
+    <div class="limit-card">
+      <h3>📷 Camera DMA Buffer Constraint</h3>
+      <p>esp32-camera allocates DMA at init and never resizes. Must init at UXGA, drop to QQVGA for Guard mode — initializing at VGA causes overflow on first UXGA capture.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ROADMAP ═══════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Roadmap</div>
+    <h2>What I'd Build Next</h2>
+    <div class="road-grid">
+      <div class="road-card"><div class="label">Composite USB</div><div class="val">HID + Mass Storage — type only drive letter, layout-independent by construction.</div></div>
+      <div class="road-card"><div class="label">AV Detection Probe</div><div class="val">Identify target security stack via benign probe before choosing bootstrap strategy.</div></div>
+      <div class="road-card"><div class="label">PowerShell Signing</div><div class="val">Self-signed cert + AllSigned execution policy for managed environments.</div></div>
+      <div class="road-card"><div class="label">USB CDC + Service</div><div class="val">Replace HID with serial + tiny installable service. No layout issues, no AV friction.</div></div>
+      <div class="road-card"><div class="label">Multi-Target VPS</div><div class="val">Device registry — address a specific target: <code>/e laptop bilgisayar yavaş</code>.</div></div>
+      <div class="road-card"><div class="label">Wireless OTA</div><div class="val">Resolve TinyUSB + ArduinoOTA heap conflict via partition-based OTA.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="container">
+    <p>Built with ❤️ by <a href="https://github.com/safaeren777-collab" target="_blank">Safa Eren</a> &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; v3.32 Final</p>
+    <p style="margin-top:8px;font-size:12px;">Part of an ongoing hardware + AI portfolio &nbsp;·&nbsp; <a href="https://github.com/safaeren777-collab/ai-personal-assistant" target="_blank">AI Personal Assistant →</a></p>
+  </div>
+</footer>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+  function openLightbox(img) {
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  document.getElementById('lightbox').addEventListener('click', function() {
+    this.classList.remove('open');
+  });
+  document.getElementById('lightbox-close').addEventListener('click', function(e) {
+    e.stopPropagation();
+    document.getElementById('lightbox').classList.remove('open');
+  });
+</script>
+
+</body>
+</html>

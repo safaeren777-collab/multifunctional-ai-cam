@@ -1,0 +1,34 @@
+# Local credentials — NEVER commit
+vps_backend/config.py
+esp32_smart_os/wifi_config.h
+
+# Python build artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Working / scratch directories
+"antigravity değişiklikler"/
+.claude/
+.vscode/
+*.swp
+
+# Arduino build outputs
+build/
+*.elf
+*.bin
+*.bin.signed
+*.map
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+/tmp/
+
+# Local-only deployment helpers
+deploy.sh
