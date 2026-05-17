@@ -1,6 +1,7 @@
 # Local credentials — NEVER commit
 vps_backend/config.py
 esp32_smart_os/wifi_config.h
+local_personal/config.py
 
 # Python build artifacts
 __pycache__/
