@@ -33,3 +33,19 @@ Thumbs.db
 
 # Local-only deployment helpers
 deploy.sh
+
+# Internal tools — not for public repo
+make_cover.html
+setup_media.ps1
+setup_media.bat
+dddff.jpeg
+
+# Raw source media (originals already copied to media/)
+guard mod ve fotoları ve videolar/
+ai mod/
+voice mod/
+klasik modun cihazda durusu/
+timelapse video ve foto/
+genel açılma kısmı ve arayüz geçişleri/
+pcb ve diğer modüller çıplakken görünümü foto/
+ilk versiyon açılış videosu bunun görünüşünü lk kısımlara koyabilirsin/
