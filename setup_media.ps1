@@ -1,4 +1,4 @@
-$base = "C:\Users\safa eren\OneDrive\Desktop\Kameran8n"
+$base = $PSScriptRoot
 $media = "$base\media"
 New-Item -ItemType Directory -Force -Path $media | Out-Null
 

