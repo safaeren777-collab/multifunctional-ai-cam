@@ -36,7 +36,7 @@ This project turns a small ESP32-S3 microcontroller into a multi-mode AI camera 
 
 ## Portfolio page
 
-Full demo with videos and photos: https://safaeren777-collab.github.io/kameran8n/
+Full demo with videos and photos: https://safaeren777-collab.github.io/multifunctional-ai-cam/
 
 ## Source code
 
