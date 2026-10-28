@@ -1,36 +1,8 @@
 {
- "guncelleme": "2026-10-26T05:00:04+03:00",
- "bas": "2026-10-26",
- "bit": "2026-11-16",
+ "guncelleme": "2026-10-29T00:51:30+03:00",
+ "bas": "2026-10-29",
+ "bit": "2026-11-19",
  "etkinlikler": [
-  {
-   "id": 22676,
-   "ad": "Girişimcilikte Yeni Nesil Stratejiler - Networking",
-   "sahip": "Pazarlama Kulübü",
-   "tur": "Seminer",
-   "bas": "2026-10-26",
-   "bit": "2026-10-26",
-   "s1": "14:30",
-   "s2": "16:00",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22676.html?k=takvim",
-   "yer": "İşletme Fakültesi I2 202 Nolu Derslik",
-   "key": "22676@2026-10-26",
-   "ilk_gorulme": "2000-01-01T00:00:00+03:00"
-  },
-  {
-   "id": 22720,
-   "ad": "Gündem Özel: Fransa’da Öğrenci Hareketleri – Sokaktan Siyasete, Gençlikten Değişime - GDS Atölyeleri",
-   "sahip": "Küresel Diplomasi Kulübü",
-   "tur": "Seminer",
-   "bas": "2026-10-27",
-   "bit": "2026-10-27",
-   "s1": "12:30",
-   "s2": "13:30",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22720.html?k=takvim",
-   "yer": "S1.Z07 Derslik",
-   "key": "22720@2026-10-27",
-   "ilk_gorulme": "2000-01-01T00:00:00+03:00"
-  },
   {
    "id": 22509,
    "ad": "2. Çocuk Hastalara Psikososyal Destek Gönüllülük Programı",
