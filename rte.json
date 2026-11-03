@@ -1,36 +1,8 @@
 {
- "guncelleme": "2026-11-03T19:34:33+03:00",
- "bas": "2026-11-03",
- "bit": "2026-11-24",
+ "guncelleme": "2026-11-04T02:00:03+03:00",
+ "bas": "2026-11-04",
+ "bit": "2026-11-25",
  "etkinlikler": [
-  {
-   "id": 22846,
-   "ad": "Reasürans Sohbetleri",
-   "sahip": "Marmara Aktüerya ve Risk Kulübü",
-   "tur": "Panel",
-   "bas": "2026-11-03",
-   "bit": "2026-11-03",
-   "s1": "13:00",
-   "s2": "15:00",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22846.html?k=takvim",
-   "yer": "B1 Binası Z08 nolu derslik,",
-   "key": "22846@2026-11-03",
-   "ilk_gorulme": "2026-11-03T19:34:33+03:00"
-  },
-  {
-   "id": 22830,
-   "ad": "Diplomasinin İçinden: Büyükelçilerle Kariyer Söyleyişleri",
-   "sahip": "Uluslararası İlişkiler Kulübü",
-   "tur": "Seminer",
-   "bas": "2026-11-03",
-   "bit": "2026-11-03",
-   "s1": "14:00",
-   "s2": "15:30",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22830.html?k=takvim",
-   "yer": "Siyasal Bilgiler Fakültesi, Z07 Nolu Sınıf",
-   "key": "22830@2026-11-03",
-   "ilk_gorulme": "2026-10-31T01:02:23+03:00"
-  },
   {
    "id": 22826,
    "ad": "Dataverse'26 Future",
