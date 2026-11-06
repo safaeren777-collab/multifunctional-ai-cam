@@ -1,50 +1,8 @@
 {
- "guncelleme": "2026-11-04T02:00:03+03:00",
- "bas": "2026-11-04",
- "bit": "2026-11-25",
+ "guncelleme": "2026-11-06T19:49:51+03:00",
+ "bas": "2026-11-06",
+ "bit": "2026-11-27",
  "etkinlikler": [
-  {
-   "id": 22826,
-   "ad": "Dataverse'26 Future",
-   "sahip": "Yönetim Bilişim Sistemleri Kulübü",
-   "tur": "Sempozyum",
-   "bas": "2026-11-05",
-   "bit": "2026-11-05",
-   "s1": "10:00",
-   "s2": "16:00",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22826.html?k=takvim",
-   "yer": "İşletme Fakültesi Konferans Salonu",
-   "key": "22826@2026-11-05",
-   "ilk_gorulme": "2026-10-31T01:02:23+03:00"
-  },
-  {
-   "id": 22607,
-   "ad": "Hariciye Mektebi",
-   "sahip": "Anadolu Gençlik Kulübü",
-   "tur": "Eğitim",
-   "bas": "2026-11-05",
-   "bit": "2026-11-05",
-   "s1": "12:30",
-   "s2": "13:30",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22607.html?k=takvim",
-   "yer": "Siyasal Bilgiler Fakültesi - 138 numaralı oda",
-   "key": "22607@2026-11-05",
-   "ilk_gorulme": "2000-01-01T00:00:00+03:00"
-  },
-  {
-   "id": 22863,
-   "ad": "2026 İsrail Seçimleri : Beklentiler,olasılıklar ve Yansımaları",
-   "sahip": "Küresel Diplomasi Kulübü",
-   "tur": "Seminer",
-   "bas": "2026-11-05",
-   "bit": "2026-11-05",
-   "s1": "12:30",
-   "s2": "14:30",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22863.html?k=takvim",
-   "yer": "S1.Z07 nolu derslik",
-   "key": "22863@2026-11-05",
-   "ilk_gorulme": "2026-11-03T19:34:33+03:00"
-  },
   {
    "id": 22869,
    "ad": "Pioneer's Perspective",
@@ -74,6 +32,20 @@
    "ilk_gorulme": "2026-11-03T19:34:33+03:00"
   },
   {
+   "id": 22887,
+   "ad": "Sürdürülebilirlik ve Endüstri Söyleşisi",
+   "sahip": "Marmara Hukuk ve Ekonomi Kulübü",
+   "tur": "Söyleşi/Sohbet",
+   "bas": "2026-11-09",
+   "bit": "2026-11-09",
+   "s1": "13:00",
+   "s2": "17:00",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22887.html?k=takvim",
+   "yer": "İşletme fakültesi konferans salonu",
+   "key": "22887@2026-11-09",
+   "ilk_gorulme": "2026-11-06T19:49:51+03:00"
+  },
+  {
    "id": 22511,
    "ad": "Öğretmenler Günü Etkinliği",
    "sahip": "Atatürk Eğitim Fakültesi",
@@ -86,6 +58,20 @@
    "yer": "Atatürk Eğitim Fakültesi Konferans Salonu",
    "key": "22511@2026-11-24",
    "ilk_gorulme": "2026-11-03T19:34:33+03:00"
+  },
+  {
+   "id": 22607,
+   "ad": "Hariciye Mektebi",
+   "sahip": "Anadolu Gençlik Kulübü",
+   "tur": "Eğitim",
+   "bas": "2026-11-26",
+   "bit": "2026-11-26",
+   "s1": "12:30",
+   "s2": "13:30",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22607.html?k=takvim",
+   "yer": "Siyasal Bilgiler Fakültesi - 138 numaralı oda",
+   "key": "22607@2026-11-26",
+   "ilk_gorulme": "2026-11-06T19:49:51+03:00"
   }
  ]
 }
