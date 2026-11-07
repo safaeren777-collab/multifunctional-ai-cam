@@ -1,36 +1,8 @@
 {
- "guncelleme": "2026-11-06T19:49:51+03:00",
- "bas": "2026-11-06",
- "bit": "2026-11-27",
+ "guncelleme": "2026-11-07T12:40:06+03:00",
+ "bas": "2026-11-07",
+ "bit": "2026-11-28",
  "etkinlikler": [
-  {
-   "id": 22869,
-   "ad": "Pioneer's Perspective",
-   "sahip": "Yönetim Kulübü",
-   "tur": "Panel",
-   "bas": "2026-11-06",
-   "bit": "2026-11-06",
-   "s1": "11:00",
-   "s2": "15:30",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22869.html?k=takvim",
-   "yer": "İşletme Fakültesi Konferans Salonu",
-   "key": "22869@2026-11-06",
-   "ilk_gorulme": "2026-11-03T19:34:33+03:00"
-  },
-  {
-   "id": 22868,
-   "ad": "Fc27 E-spor Turnuvası",
-   "sahip": "Marmara Bilişim Kulübü",
-   "tur": "Yarışma (Düzenleme)",
-   "bas": "2026-11-06",
-   "bit": "2026-11-06",
-   "s1": "15:00",
-   "s2": "17:00",
-   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22868.html?k=takvim",
-   "yer": "T2 binası Z08 ve Z13 isimli derslikler",
-   "key": "22868@2026-11-06",
-   "ilk_gorulme": "2026-11-03T19:34:33+03:00"
-  },
   {
    "id": 22887,
    "ad": "Sürdürülebilirlik ve Endüstri Söyleşisi",
