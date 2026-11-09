@@ -1,5 +1,5 @@
 {
- "guncelleme": "2026-11-09T12:50:08+03:00",
+ "guncelleme": "2026-11-09T22:44:36+03:00",
  "bas": "2026-11-09",
  "bit": "2026-11-30",
  "etkinlikler": [
@@ -30,6 +30,20 @@
    "yer": "Atatürk Eğitim Fakültesi Konferans Salonu",
    "key": "22511@2026-11-24",
    "ilk_gorulme": "2026-11-03T19:34:33+03:00"
+  },
+  {
+   "id": 22907,
+   "ad": "Movember Farkındalığı",
+   "sahip": "Eczacılık Öğrencileri Birliği Kulübü",
+   "tur": "Sosyal Sorumluluk",
+   "bas": "2026-11-25",
+   "bit": "2026-11-25",
+   "s1": "11:00",
+   "s2": "14:00",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22907.html?k=takvim",
+   "yer": "Recep Tayyip Erdoğan Külliyesi Yemekhane Binası İçi",
+   "key": "22907@2026-11-25",
+   "ilk_gorulme": "2026-11-09T22:44:36+03:00"
   },
   {
    "id": 22607,
