@@ -1,7 +1,7 @@
 {
- "guncelleme": "2026-11-18T07:23:16+03:00",
- "bas": "2026-11-18",
- "bit": "2026-12-09",
+ "guncelleme": "2026-11-19T11:40:52+03:00",
+ "bas": "2026-11-19",
+ "bit": "2026-12-10",
  "etkinlikler": [
   {
    "id": 22511,
@@ -72,6 +72,20 @@
    "yer": "Siyasal Bilgiler Fakültesi - 138 numaralı oda",
    "key": "22607@2026-12-03",
    "ilk_gorulme": "2026-11-12T03:13:04+03:00"
+  },
+  {
+   "id": 22607,
+   "ad": "Hariciye Mektebi",
+   "sahip": "Anadolu Gençlik Kulübü",
+   "tur": "Eğitim",
+   "bas": "2026-12-10",
+   "bit": "2026-12-10",
+   "s1": "12:30",
+   "s2": "13:30",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22607.html?k=takvim",
+   "yer": "Siyasal Bilgiler Fakültesi - 138 numaralı oda",
+   "key": "22607@2026-12-10",
+   "ilk_gorulme": "2026-11-19T11:40:52+03:00"
   }
  ]
 }
