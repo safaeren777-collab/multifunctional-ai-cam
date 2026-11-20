@@ -1,5 +1,5 @@
 {
- "guncelleme": "2026-11-20T12:59:15+03:00",
+ "guncelleme": "2026-11-20T19:31:20+03:00",
  "bas": "2026-11-20",
  "bit": "2026-12-11",
  "etkinlikler": [
@@ -46,6 +46,20 @@
    "ilk_gorulme": "2026-11-03T19:34:33+03:00"
   },
   {
+   "id": 22971,
+   "ad": "25 Kasım Kadına Yönelik Şiddetle Mücadele ve Hukuki Farkındalık Atölyesi",
+   "sahip": "Marmara İnovasyon Kulübü",
+   "tur": "Söyleşi/Sohbet",
+   "bas": "2026-11-24",
+   "bit": "2026-11-24",
+   "s1": "13:00",
+   "s2": "15:00",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22971.html?k=takvim",
+   "yer": "İşletme Fakültesi I2 Binası 128 nolu derslik",
+   "key": "22971@2026-11-24",
+   "ilk_gorulme": "2026-11-20T19:31:20+03:00"
+  },
+  {
    "id": 22907,
    "ad": "Movember Farkındalığı",
    "sahip": "Eczacılık Öğrencileri Birliği Kulübü",
@@ -74,6 +88,20 @@
    "ilk_gorulme": "2026-11-20T12:59:15+03:00"
   },
   {
+   "id": 22970,
+   "ad": "Şiddet Türleri ve Öz Savunma Atölyesi",
+   "sahip": "Kadın Hakları Kulübü",
+   "tur": "Forum",
+   "bas": "2026-11-25",
+   "bit": "2026-11-25",
+   "s1": "17:30",
+   "s2": "20:00",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22970.html?k=takvim",
+   "yer": "K1. -1. Kat B05",
+   "key": "22970@2026-11-25",
+   "ilk_gorulme": "2026-11-20T19:31:20+03:00"
+  },
+  {
    "id": 22607,
    "ad": "Hariciye Mektebi",
    "sahip": "Anadolu Gençlik Kulübü",
@@ -100,6 +128,20 @@
    "yer": "İşletme Fakültesi I2 Binası 128 nolu derslik",
    "key": "22940@2026-12-02",
    "ilk_gorulme": "2026-11-17T02:58:14+03:00"
+  },
+  {
+   "id": 22974,
+   "ad": "COP 31: Sürdürülebilirlik ve Yeşil Dönüşüm Semineri",
+   "sahip": "Girişimcilik Kulübü",
+   "tur": "Panel",
+   "bas": "2026-12-02",
+   "bit": "2026-12-02",
+   "s1": "10:00",
+   "s2": "17:30",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22974.html?k=takvim",
+   "yer": "İşletme Fakültesi Konferans Salonu",
+   "key": "22974@2026-12-02",
+   "ilk_gorulme": "2026-11-20T19:31:20+03:00"
   },
   {
    "id": 22607,
