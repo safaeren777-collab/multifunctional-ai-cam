@@ -1,8 +1,36 @@
 {
- "guncelleme": "2026-11-20T00:33:32+03:00",
+ "guncelleme": "2026-11-20T12:59:15+03:00",
  "bas": "2026-11-20",
  "bit": "2026-12-11",
  "etkinlikler": [
+  {
+   "id": 22965,
+   "ad": "24 Kasım: Bir Harf, Bin Minnet - Öğretmenler Günü Buluşması",
+   "sahip": "Mutfak Sanatları Kulübü",
+   "tur": "Kahvaltı/Piknik/Yemek/Davet",
+   "bas": "2026-11-23",
+   "bit": "2026-11-23",
+   "s1": "09:00",
+   "s2": "12:00",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22965.html?k=takvim",
+   "yer": "Atatürk Eğitim Fakültesi A2 Binası Fuaye Alanı",
+   "key": "22965@2026-11-23",
+   "ilk_gorulme": "2026-11-20T12:59:15+03:00"
+  },
+  {
+   "id": 22966,
+   "ad": "İz Bırakanlar Ağacı",
+   "sahip": "Duvarsız Öğrenme Kulübü",
+   "tur": "Etkinliğe Katılım",
+   "bas": "2026-11-23",
+   "bit": "2026-11-23",
+   "s1": "09:00",
+   "s2": "11:00",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22966.html?k=takvim",
+   "yer": "Atatürk Eğitim Fakültesi A2 binası fuaye alanı",
+   "key": "22966@2026-11-23",
+   "ilk_gorulme": "2026-11-20T12:59:15+03:00"
+  },
   {
    "id": 22511,
    "ad": "Öğretmenler Günü Etkinliği",
@@ -30,6 +58,20 @@
    "yer": "Recep Tayyip Erdoğan Külliyesi Yemekhane Binası İçi",
    "key": "22907@2026-11-25",
    "ilk_gorulme": "2026-11-09T22:44:36+03:00"
+  },
+  {
+   "id": 22968,
+   "ad": "İnotalks - Pepsico",
+   "sahip": "Marmara İnovasyon Kulübü",
+   "tur": "Söyleşi/Sohbet",
+   "bas": "2026-11-25",
+   "bit": "2026-11-25",
+   "s1": "11:30",
+   "s2": "12:30",
+   "url": "https://esks.marmara.edu.tr/rezervasyon/etkinlik-22968.html?k=takvim",
+   "yer": "İşletme Fakültesi I1 Binası 223 nolu derslik",
+   "key": "22968@2026-11-25",
+   "ilk_gorulme": "2026-11-20T12:59:15+03:00"
   },
   {
    "id": 22607,
